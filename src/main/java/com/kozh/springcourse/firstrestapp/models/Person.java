@@ -1,14 +1,11 @@
 package com.kozh.springcourse.firstrestapp.models;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.Date;
-import java.util.Objects;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Person")
@@ -23,7 +20,7 @@ public class Person {
     @Column(name = "name")
     private String name;
 
-    @Min(value = 0, message = "Age should be greater than 0")
+    @Min(value = 1, message = "Age should be greater than 0")
     @Column(name = "age")
     private int age;
 
@@ -31,6 +28,16 @@ public class Person {
     @NotEmpty(message = "Email should be not empty")
     @Column(name = "email")
     private String email;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @NotEmpty
+    @Column(name = "created_who")
+    private String createdWho;
 
     public Person() {
 
@@ -71,5 +78,29 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getCreatedWho() {
+        return createdWho;
+    }
+
+    public void setCreatedWho(String createdWho) {
+        this.createdWho = createdWho;
     }
 }
